@@ -1,0 +1,1 @@
+web: gunicorn scores_on_screen.wsgi 
