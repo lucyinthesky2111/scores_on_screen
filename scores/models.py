@@ -7,7 +7,7 @@ STATUS = ((0, "Draft"), (1, "Published"))
 class Score(models.Model):
     score_name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique=True)
-    composer = models.ForeignKey('Composer', on_delete=models.PROTECT)
+    composer = models.ManyToManyField('Composer', related_name=scores)
     youtube_url = models.URLField()
     score_description = models.TextField()
     score_runtime = models.DurationField()
@@ -16,6 +16,10 @@ class Score(models.Model):
     score_updated_at = models.DateTimeField(auto_now=True)
     score_deleted = models.BooleanField("deleted", default=False)
     status = models.IntegerField(choices=STATUS, default=0)
+    
+def __str__(self):
+    return self.score_name
+
     
     
 class Composer(models.Model):
