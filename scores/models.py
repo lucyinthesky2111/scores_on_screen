@@ -7,7 +7,7 @@ STATUS = ((0, "Draft"), (1, "Published"))
 class Score(models.Model):
     score_name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique=True)
-    composer = models.ManyToManyField('Composer', related_name=scores)
+    composer = models.ManyToManyField('Composer', related_name='scores')
     youtube_url = models.URLField()
     score_description = models.TextField()
     score_runtime = models.DurationField()
@@ -27,6 +27,5 @@ class Composer(models.Model):
     composer_birth_date = models.DateField()
     composer_death_date = models.DateField(null=True, blank=False)
     
-
     def __str__(self):
         return self.composer_name
