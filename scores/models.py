@@ -17,11 +17,13 @@ class Score(models.Model):
     score_deleted = models.BooleanField("deleted", default=False)
     status = models.IntegerField(choices=STATUS, default=0)
     
-def __str__(self):
-    return self.score_name
+    class Meta: 
+        ordering = ["-score_created_at"]
+    
+    def __str__(self):
+        return f"{self.score_name} | composed by {self.composer_name}"
 
-    
-    
+
 class Composer(models.Model):
     composer_name = models.CharField(max_length=255)
     composer_birth_date = models.DateField()
